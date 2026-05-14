@@ -1,0 +1,256 @@
+{
+  "schema_version": "1.0",
+  "pre_registered_at": "2026-06-04 (target)",
+  "rationale": "Per-language search query battery used by scripts/02_scrape_policies.py. Each institution is queried in its primary language plus English as a fallback. The keyword density filter requires >= 3 of the query keywords to appear in any candidate chunk for it to be flagged as a policy chunk.",
+  "languages": {
+    "en": {
+      "iso_639_1": "en",
+      "name": "English",
+      "primary_for_regions": ["NA", "EA-en-campus"],
+      "queries": [
+        "Generative AI policy",
+        "ChatGPT policy",
+        "Generative AI guidelines",
+        "Generative AI guidance",
+        "AI use guidelines",
+        "AI guidelines academic",
+        "AI in teaching guidelines",
+        "AI governance university",
+        "large language models academic policy",
+        "artificial intelligence academic integrity",
+        "AI student use",
+        "AI assessment policy",
+        "AI use in research"
+      ],
+      "keyword_density_terms": [
+        "generative AI", "chatgpt", "GPT", "large language model", "LLM",
+        "artificial intelligence", "AI policy", "AI guideline", "AI tool",
+        "GenAI", "AI use", "academic integrity AI", "AI disclosure"
+      ]
+    },
+    "zh": {
+      "iso_639_1": "zh",
+      "name": "Chinese (simplified)",
+      "primary_for_regions": ["EA"],
+      "countries": ["CN"],
+      "queries": [
+        "生成式人工智能 政策",
+        "生成式人工智能 教学指南",
+        "生成式人工智能 规定",
+        "ChatGPT 使用规定",
+        "ChatGPT 学术诚信",
+        "人工智能 学术规范",
+        "人工智能 教学应用",
+        "大语言模型 学术",
+        "生成式人工智能 课程",
+        "人工智能 作业",
+        "AI 工具 学术使用"
+      ],
+      "keyword_density_terms": [
+        "生成式人工智能", "ChatGPT", "GPT", "大语言模型", "人工智能",
+        "AI 工具", "学术诚信", "学术规范", "教学指南", "课程使用"
+      ]
+    },
+    "zh-Hant": {
+      "iso_639_1": "zh-Hant",
+      "name": "Chinese (traditional)",
+      "primary_for_regions": ["EA"],
+      "countries": ["HK", "TW"],
+      "queries": [
+        "生成式人工智慧 政策",
+        "ChatGPT 學術誠信",
+        "生成式人工智慧 課程使用",
+        "人工智慧 教學指南",
+        "AI 工具 學術",
+        "大型語言模型 學術",
+        "ChatGPT 使用規範"
+      ],
+      "keyword_density_terms": [
+        "生成式人工智慧", "ChatGPT", "GPT", "大型語言模型",
+        "人工智慧", "AI 工具", "學術誠信", "課程使用", "教學指南"
+      ]
+    },
+    "de": {
+      "iso_639_1": "de",
+      "name": "German",
+      "primary_for_regions": ["EU"],
+      "countries": ["DE", "AT", "CH"],
+      "queries": [
+        "KI-Richtlinie Hochschule",
+        "Künstliche Intelligenz Lehre Leitlinie",
+        "ChatGPT Universität Regeln",
+        "Generative KI Hochschule",
+        "KI-Nutzung Studierende",
+        "KI-Einsatz wissenschaftliches Arbeiten",
+        "KI-Richtlinie Prüfungen",
+        "Generative KI Forschung",
+        "KI-Kompetenz Lehre",
+        "ChatGPT Hochschullehre"
+      ],
+      "keyword_density_terms": [
+        "Künstliche Intelligenz", "KI", "Generative KI", "ChatGPT",
+        "GPT", "LLM", "Sprachmodell", "KI-Tool",
+        "KI-Richtlinie", "KI-Leitlinie", "wissenschaftliches Arbeiten",
+        "akademische Integrität"
+      ]
+    },
+    "fr": {
+      "iso_639_1": "fr",
+      "name": "French",
+      "primary_for_regions": ["EU"],
+      "countries": ["FR", "BE", "CH", "CA"],
+      "queries": [
+        "politique IA générative université",
+        "ChatGPT enseignement supérieur",
+        "intelligence artificielle intégrité académique",
+        "IA générative recommandations",
+        "directives IA universitaire",
+        "IA générative étudiants",
+        "intelligence artificielle évaluation",
+        "ChatGPT recherche universitaire",
+        "IA dans l'enseignement"
+      ],
+      "keyword_density_terms": [
+        "IA générative", "intelligence artificielle", "ChatGPT", "GPT",
+        "grand modèle de langage", "LLM", "outil IA",
+        "politique IA", "intégrité académique", "enseignement supérieur"
+      ]
+    },
+    "es": {
+      "iso_639_1": "es",
+      "name": "Spanish",
+      "primary_for_regions": ["EU", "LA"],
+      "countries": ["ES", "MX", "AR", "CL", "CO", "PE"],
+      "queries": [
+        "política de IA generativa universidad",
+        "ChatGPT integridad académica",
+        "inteligencia artificial directrices universidad",
+        "IA generativa educación superior",
+        "normas IA estudiantes",
+        "uso de IA en la enseñanza",
+        "directrices ChatGPT universidad",
+        "IA generativa investigación académica",
+        "evaluación IA universidad"
+      ],
+      "keyword_density_terms": [
+        "IA generativa", "inteligencia artificial", "ChatGPT", "GPT",
+        "modelo de lenguaje", "LLM", "herramienta IA",
+        "política IA", "integridad académica", "educación superior"
+      ]
+    },
+    "pt": {
+      "iso_639_1": "pt",
+      "name": "Portuguese",
+      "primary_for_regions": ["LA"],
+      "countries": ["BR", "PT"],
+      "queries": [
+        "política de IA generativa universidade",
+        "ChatGPT diretrizes acadêmicas",
+        "inteligência artificial integridade acadêmica",
+        "diretrizes de IA generativa",
+        "normas IA estudantes ensino superior",
+        "IA generativa pesquisa universitária",
+        "uso de ChatGPT na universidade",
+        "IA generativa avaliação acadêmica"
+      ],
+      "keyword_density_terms": [
+        "IA generativa", "inteligência artificial", "ChatGPT", "GPT",
+        "modelo de linguagem", "LLM", "ferramenta de IA",
+        "política IA", "integridade acadêmica", "ensino superior"
+      ]
+    },
+    "ja": {
+      "iso_639_1": "ja",
+      "name": "Japanese",
+      "primary_for_regions": ["EA"],
+      "countries": ["JP"],
+      "queries": [
+        "生成AI 大学 ポリシー",
+        "ChatGPT 大学 ガイドライン",
+        "生成AI 学術",
+        "人工知能 学習 大学",
+        "生成AI 利用 規則",
+        "大学 AI ツール 指針"
+      ],
+      "keyword_density_terms": [
+        "生成AI", "ChatGPT", "GPT", "大規模言語モデル", "人工知能",
+        "AI ツール", "ガイドライン", "ポリシー", "学術", "学習"
+      ]
+    },
+    "ko": {
+      "iso_639_1": "ko",
+      "name": "Korean",
+      "primary_for_regions": ["EA"],
+      "countries": ["KR"],
+      "queries": [
+        "생성 AI 대학 정책",
+        "ChatGPT 대학 가이드라인",
+        "생성 인공지능 학사 정책",
+        "AI 도구 학사 활용",
+        "대학 생성 AI 윤리"
+      ],
+      "keyword_density_terms": [
+        "생성 AI", "ChatGPT", "GPT", "대규모 언어 모델", "인공지능",
+        "AI 도구", "가이드라인", "정책", "학사", "윤리"
+      ]
+    },
+    "it": {
+      "iso_639_1": "it",
+      "name": "Italian",
+      "primary_for_regions": ["EU"],
+      "countries": ["IT", "CH"],
+      "queries": [
+        "linee guida IA università",
+        "ChatGPT ateneo politiche",
+        "intelligenza artificiale integrità accademica",
+        "IA generativa istruzione superiore",
+        "linee guida ChatGPT università"
+      ],
+      "keyword_density_terms": [
+        "IA generativa", "intelligenza artificiale", "ChatGPT", "GPT",
+        "modello linguistico", "LLM", "linee guida", "integrità accademica"
+      ]
+    },
+    "nl": {
+      "iso_639_1": "nl",
+      "name": "Dutch",
+      "primary_for_regions": ["EU"],
+      "countries": ["NL", "BE"],
+      "queries": [
+        "AI-richtlijn universiteit",
+        "ChatGPT hogeschool beleid",
+        "generatieve AI onderwijs",
+        "AI-tools studenten richtlijn",
+        "AI academische integriteit",
+        "generatieve AI onderzoek"
+      ],
+      "keyword_density_terms": [
+        "generatieve AI", "kunstmatige intelligentie", "ChatGPT", "GPT",
+        "groot taalmodel", "LLM", "AI-tool",
+        "AI-richtlijn", "academische integriteit", "hoger onderwijs"
+      ]
+    }
+  },
+  "fallback_protocol": {
+    "rationale": "If automated site-search returns < 3 candidate URLs after running the full per-language battery, escalate to manual fallback.",
+    "manual_steps": [
+      "Visit the institution's homepage and inspect the top-level navigation for 'Policy / Compliance / Academic Integrity / IT / Teaching & Learning' sections",
+      "Use Google with `site:<institution_domain> \"generative AI\"` as a last-ditch query",
+      "Allow at most 5 minutes per institution; log time spent in exclusion_ledger.csv",
+      "If no public policy after manual fallback, mark institution `drop_reason=no_public_policy`"
+    ]
+  },
+  "keyword_density_filter": {
+    "rationale": "After fetching a candidate page, count how many of the keyword_density_terms appear (case-insensitive, substring match for CJK). A page is flagged as a policy chunk if at least 3 terms appear OR if at least 1 term appears AND the page URL contains 'policy', 'guideline', 'integrity', 'guidance', or one of their translations.",
+    "min_term_count": 3,
+    "fallback_url_keywords_en": [
+      "policy", "guideline", "guidance", "integrity", "academic-integrity",
+      "ai-policy", "genai", "chatgpt", "academic-misconduct"
+    ],
+    "fallback_url_keywords_de": ["richtlinie", "leitlinie", "redlichkeit"],
+    "fallback_url_keywords_zh": ["zhengce", "guifan", "zhinan"],
+    "fallback_url_keywords_es": ["politica", "directriz", "norma"],
+    "fallback_url_keywords_pt": ["politica", "diretriz", "norma"],
+    "fallback_url_keywords_fr": ["politique", "directive", "recommandation"]
+  }
+}

@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# LaTeX build artifacts (in case manuscript/ ever gets compiled here)
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# Model weights (NEVER commit; multi-GB)
+models/
+*.safetensors
+*.bin
+*.gguf
+*.pt
+
+# HF cache
+.cache/
+huggingface/
+
+# Local re-derived corpus (text-bearing JSONL)
+data_full/
+**/*.full.jsonl
+
+# Compute / cluster-specific
+slurm-*.out
+*.sbatch
+
+# Secrets
+.hf_token
+.env
+*.pem
+*.key
+credentials.json
+
+# Large derived outputs that re-run can regenerate
+results/runs/
+*.tmp

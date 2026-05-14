@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+title: "Cross-National GenAI Policy Coding"
+message: >-
+  If you use this dataset, codebook, or analysis pipeline, please cite the
+  accompanying manuscript (currently under double-anonymous review; full
+  citation will be added at acceptance).
+type: dataset
+authors:
+  - given-names: Jie
+    family-names: Ni
+    email: njie@seu.edu.cn
+    orcid: "https://orcid.org/0009-0003-9767-5441"
+    affiliation: >-
+      State Key Laboratory of Digital Medical Engineering, School of
+      Biological Science and Medical Engineering, Southeast University,
+      Nanjing 211102, China; and Data Science Group, Digital Science
+      Centre, University of Innsbruck, Innsbruck 6020, Austria
+abstract: >-
+  A reproducible open-weight dual-LLM coding pipeline for analysing
+  university generative-AI policy text across world regions and languages.
+  Includes the 64-institution sampling frame, the 22-query multilingual
+  search battery, the eight-theme codebook with sentiment rubric and 16
+  worked few-shot examples, 338 dual-LLM coded chunks (Qwen3.6-27B with
+  Mistral-Small-3.2-24B cross-validation under schema-constrained JSON
+  decoding), 40 expert hand-coded gold-standard chunks, all confirmatory,
+  sensitivity, and ablation analysis CSVs, and the full Python analysis
+  pipeline.
+keywords:
+  - generative AI policy
+  - cross-national higher education
+  - institutional logics
+  - large language model coding
+  - inter-rater reliability
+  - comparative policy analysis
+  - reproducible methodology
+license: CC-BY-4.0
+license-url: "https://creativecommons.org/licenses/by/4.0/"
+repository-code: ""
+url: ""

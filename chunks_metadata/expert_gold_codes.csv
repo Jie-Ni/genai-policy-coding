@@ -1,0 +1,41 @@
+chunk_id,T1_integration,T2_multimodal,T3_privacy,T4_integrity,T5_disclosure,T6_equity,T7_vendor_governance,T8_pedagogical_redesign,sent_assessment,sent_research,sent_teaching,sent_administration,coder_note
+NA_U09_f0ff73b3_000,0,0,0,1,0,0,0,0,-1,0,0,0,academic integrity values/standards/exposure tests UCSD
+NA_E08_39081823_000,0,1,1,0,0,0,0,0,0,0,0,0,descriptive Chicago GenAI tools and ethical use
+NA_E07_6cae678e_002,0,0,0,0,0,0,0,0,0,0,0,0,Yale speaker bios off-topic
+NA_E08_39081823_004,1,0,0,1,0,0,0,1,0,0,1,0,Chicago workshop on integrity and pedagogy
+NA_E05_4a15469f_002,0,0,0,0,0,0,0,0,0,0,0,0,Berkeley business case scaling off-topic
+NA_U04_5c2f5d5a_000,1,0,1,0,0,1,0,1,0,0,2,0,UIUC instructor guidance equal access inclusivity
+NA_E03_dae135cc_000,1,0,0,1,0,0,0,0,0,0,1,0,Stanford MD MSPA AI policy clinical reasoning
+NA_U01_57717f4b_004,0,0,0,0,0,0,0,0,0,0,0,0,UCLA references only off-topic
+NA_E05_696766fd_004,0,0,0,1,0,0,1,0,0,1,0,0,Berkeley AI detection legislation framework
+NA_E05_24788085_000,0,0,1,1,0,0,1,0,0,0,0,0,Berkeley RTL Turnitin FERPA third-party detection
+EU_E03_19f5aad1_000,1,0,0,0,1,0,0,0,-1,0,0,0,Imperial academic use as starting point cite
+EU_U03_959c56f9_002,1,0,0,0,0,1,0,0,-1,0,0,0,Edinburgh assessed work disability adjustments
+EU_E09_8ec0fed5_000,0,0,0,1,1,0,0,0,-1,0,0,0,LMU student responsibility citation
+EU_E03_d7c8d88a_001,0,0,0,0,0,0,0,0,0,0,0,0,Imperial compliance nav off-topic
+EU_U04_2b914bec_005,0,1,0,0,0,0,0,0,0,0,0,0,Manchester glossary GenAI LLM definitions
+EU_U03_959c56f9_005,0,1,1,1,0,0,0,0,-1,0,0,0,Edinburgh GenAI limits misconduct
+EU_U04_2b914bec_001,1,0,1,0,0,0,1,0,0,0,0,1,Manchester approved enterprise services GDPR
+EU_E10_1f8a79ad_000,1,0,0,0,1,0,0,0,0,0,1,0,KU Leuven responsible use transparency
+EU_E11_1c0ffa14_000,1,0,0,0,0,0,1,0,0,1,1,0,Sorbonne Mistral AI alliance
+EU_U02_a6caaea9_003,1,0,0,0,1,0,0,1,0,0,1,0,LSE process documentation transparency
+EA_E15_cbbe1796_000,1,0,0,0,0,0,0,1,0,0,2,0,NTU Taiwan teaching response
+EA_E02_8f5f676c_002,0,0,0,0,0,1,1,0,0,0,0,0,Peking risk regulation digital divide
+EA_E08_c88dff41_000,1,0,1,1,0,1,0,1,0,0,1,0,HKU six core principles
+EA_E14_7446cbb3_000,1,0,0,0,0,0,0,1,0,0,1,0,Osaka teaching response evaluation
+EA_E15_cbbe1796_001,0,0,0,1,0,0,0,1,-1,0,1,0,NTU Taiwan assessment redesign
+EA_E13_2b7add10_000,0,0,0,0,0,0,0,0,0,0,0,0,KAIST press release off-topic
+EA_E03_aac6157d_000,1,0,0,1,0,0,0,0,-1,0,1,0,Univ Tokyo provisional policy
+EA_E12_836dadf6_003,1,0,0,0,0,0,0,1,0,0,2,0,Zhejiang AI for education curriculum
+EA_E12_836dadf6_002,1,0,0,0,0,0,0,1,0,0,2,0,Zhejiang language teaching
+EA_E04_36fde4c8_013,1,0,0,0,0,0,0,0,0,0,1,0,Kyoto GenAI knowledge essay
+LA_E04_c9146ce7_002,0,0,0,0,0,0,0,0,0,0,0,0,UNAM literature review essay off-topic
+LA_E04_c9146ce7_001,0,0,0,0,0,0,0,0,0,0,0,0,UNAM tech-education essay
+LA_U03_9a1d8145_000,1,0,0,0,0,0,0,0,0,0,1,0,UnB IA adoption pandemic narrative
+LA_E03_08f6b09d_010,0,1,0,0,0,0,0,0,0,0,0,0,Unicamp LLM background section
+LA_U07_e9668973_001,0,0,0,0,0,0,0,0,0,0,0,0,UAM bibliography off-topic
+LA_E07_7c852de2_000,0,0,0,1,1,0,0,0,0,0,0,1,PUC Chile citation guide
+LA_E03_08f6b09d_036,1,0,0,0,0,1,0,1,0,1,0,0,Unicamp marginalized groups equity
+LA_E03_08f6b09d_079,0,0,0,0,0,0,0,0,0,0,0,0,Unicamp bibliography off-topic
+LA_E03_08f6b09d_024,0,0,0,0,0,0,1,0,0,0,0,0,Unicamp closed source LLM transparency
+LA_E04_8cdafa64_000,1,0,0,1,0,0,0,0,0,1,1,0,UNAM book launch ethical AI

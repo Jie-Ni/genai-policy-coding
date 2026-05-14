@@ -1,0 +1,5 @@
+{"chunk_id": "smoke_01", "institution_id": "NA_E03", "institution_name": "Stanford University", "region": "NA", "tier": "elite", "language_declared": "en", "section_header": "Faculty Guidance"}
+{"chunk_id": "smoke_02", "institution_id": "NA_E02", "institution_name": "Harvard University", "region": "NA", "tier": "elite", "language_declared": "en", "section_header": "Academic Integrity"}
+{"chunk_id": "smoke_03", "institution_id": "EU_E07", "institution_name": "Technical University of Munich", "region": "EU", "tier": "elite", "language_declared": "de", "section_header": "KI-Nutzung Studierende"}
+{"chunk_id": "smoke_04", "institution_id": "EA_E01", "institution_name": "Tsinghua University", "region": "EA", "tier": "elite", "language_declared": "zh", "section_header": "生成式人工智能使用规范"}
+{"chunk_id": "smoke_05", "institution_id": "LA_E01", "institution_name": "Universidade de São Paulo", "region": "LA", "tier": "elite", "language_declared": "pt", "section_header": "Política de IA Generativa"}
