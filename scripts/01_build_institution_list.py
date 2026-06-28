@@ -55,7 +55,7 @@ def load_csv(path: Path) -> list[dict[str, Any]]:
     if not path.exists():
         raise SystemExit(f"missing {path}")
     rows = list(csv.DictReader(path.open(encoding="utf-8-sig")))
-    return [{k.lstrip("锘?): v for k, v in r.items()} for r in rows]
+    return [{k.lstrip("\ufeff"): v for k, v in r.items()} for r in rows]
 
 
 def validate_schema(rows: list[dict[str, Any]]) -> list[str]:
@@ -139,9 +139,11 @@ def check_urls(rows: list[dict[str, Any]], max_per_call: int = 5) -> dict[str, A
             entry: dict[str, Any] = {"url": url, "status": None, "elapsed_ms": None, "error": None}
             t0 = time.time()
             try:
-                req = urllib.request.Request(url, method="HEAD", headers={
-                    "User-Agent": "genai-policy-maturation/1.0 (contact: ni.jie@uibk.ac.at)"
-                })
+                req = urllib.request.Request(
+                    url,
+                    method="HEAD",
+                    headers={"User-Agent": "genai-policy-maturation/1.0"},
+                )
                 with urllib.request.urlopen(req, timeout=10) as resp:
                     entry["status"] = resp.status
             except Exception as exc:

@@ -466,7 +466,7 @@ def main() -> int:
     for r in c3:
         lines.append(f"| {r['theme']} | {r['Z']:+.3f} | {r['p_two_sided']:.4g} |")
     lines.append("")
-    lines.append(f"## C4. Pairwise z-tests for T7/T4/T5 (Bonferroni 伪/6=0.0083)")
+    lines.append("## C4. Pairwise z-tests for T7/T4/T5 (Bonferroni alpha/6=0.0083)")
     lines.append(f"- **{n_bonf_sig}/{len(c4)}** pairs reject at Bonferroni-corrected level")
     lines.append("")
     lines.append("| Theme | Pair | diff | z | p | Reject? |")
@@ -474,7 +474,7 @@ def main() -> int:
     for r in c4:
         lines.append(f"| {r['theme']} | {r['region_A']}-{r['region_B']} | "
                       f"{r['diff']:+.2f} | {r['z']:+.2f} | {r['p_two_sided']:.4g} | "
-                      f"{'鉁? if r['reject_at_bonferroni'] else '路'} |")
+                      f"{'yes' if r['reject_at_bonferroni'] else 'no'} |")
     lines.append("")
     lines.append(f"## C5. ANOVA on sentiment means (per use-case)")
     lines.append(f"- **{n_sig_c5}/{len(c5)}** use-cases show significant regional differences")

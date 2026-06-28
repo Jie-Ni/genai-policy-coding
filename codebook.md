@@ -3,7 +3,7 @@
 **Version.** 1.0. To be incremented if codebook or prompt structure changes after the human pilot.
 **Used by.** `scripts/07_gpt4o_coder.py`.
 **Validation target.** Per-theme F1 ≥ 0.75 vs. human-adjudicated gold standard on the 1200-chunk pilot. Macro-F1 ≥ 0.80.
-**Calibration set.** 1200 chunks coded by Coder 1 + Coder 2 + Prof. Jatowt (gold-label adjudication). Pilot subset is `data_processed/pilot_chunks.jsonl`.
+**Calibration set.** 1200 chunks coded by two independent coders plus a senior human adjudicator. Pilot subset is `data_processed/pilot_chunks.jsonl`.
 **Model.** `gpt-4o-2024-08-06` (or latest stable as of run date). Temperature: **0.0**. Max output tokens: 800.
 **Cost estimate.** ~1.9K tokens per chunk × ~7000 chunks = ~14M tokens. GPT-4o pricing $2.50/1M input + $10/1M output → ~$45 for the full coding run; budget $200 including prompt-engineering iterations and the cross-LLM validation with Claude.
 
@@ -363,8 +363,8 @@ Track every prompt revision here. Increment version after pilot.
 
 | Version | Date | Change | F1 macro on pilot | F1 weakest theme |
 |---|---|---|---|---|
-| v1 | 2026-06 | Initial public codebook release for aggregate reproducibility package | N. Zhang | J. Ni |
-| v2 | Post-review if needed | Reserved for any post-review coding-schema revision | N. Zhang | J. Ni |
+| v1 | 2026-06 | Initial public codebook release for aggregate reproducibility package | pending report | pending report |
+| v2 | Post-review if needed | Reserved for any post-review coding-schema revision | pending report | pending report |
 
 ---
 
@@ -384,10 +384,10 @@ Pre-registered acceptance criterion: per-theme $\kappa$ between GPT-4o and Claud
 After the v1 prompt runs on the pilot:
 
 1. For chunks where GPT-4o disagrees with human-adjudicated gold on $\geq 2$ themes: flag for re-adjudication.
-2. The flagged chunks are reviewed by Prof. Jatowt (blind to LLM output) within 1 week.
+2. The flagged chunks are reviewed by a senior human adjudicator (blind to LLM output) within 1 week.
 3. If the re-adjudication confirms the human label, the prompt is revised; if it changes the gold label, the codebook is revised (v2).
 4. All adjudication decisions logged in `data_processed/adjudication_log.csv`.
 
 ---
 
-*End of prompt template v1. Maintainer: Ni Jie. Last revision: drafted 2026-05-12, to be operationalised week 6 of the pilot.*
+*End of prompt template v1. Maintainer: anonymous project team. Last revision: drafted 2026-05-12, to be operationalised week 6 of the pilot.*

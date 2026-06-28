@@ -99,20 +99,20 @@ def detect_language(text: str, fallback: str = "und") -> str:
         except Exception:
             pass
     # Script heuristic
-    cjk = sum(1 for c in sample if '涓€' <= c <= '榭?)
+    cjk = sum(1 for c in sample if "\u4e00" <= c <= "\u9fff")
     if cjk > 30:
         return "zh"
-    hira = sum(1 for c in sample if '銇€' <= c <= '銈?)
-    kata = sum(1 for c in sample if '銈? <= c <= '銉?)
+    hira = sum(1 for c in sample if "\u3040" <= c <= "\u309f")
+    kata = sum(1 for c in sample if "\u30a0" <= c <= "\u30ff")
     if hira + kata > 30:
         return "ja"
-    hangul = sum(1 for c in sample if '臧€' <= c <= '頌?)
+    hangul = sum(1 for c in sample if "\uac00" <= c <= "\ud7af")
     if hangul > 30:
         return "ko"
     # Latin-script
-    if any(c in sample for c in "盲枚眉脛脰脺脽"):
+    if any(c in sample for c in "äöüÄÖÜß"):
         return "de"
-    if any(c in sample for c in "帽谩茅铆贸煤眉驴隆"):
+    if any(c in sample for c in "ñáéíóúü¿¡"):
         return "es"
     if any(c in sample for c in "茫玫莽谩茅铆贸煤芒锚么"):
         return "pt"
@@ -206,7 +206,7 @@ def mojibake_score(text: str) -> float:
     """
     if not text:
         return 1.0
-    bad = sum(1 for c in text if c == "锟? or unicodedata.category(c) in ("Cc", "Co", "Cn"))
+    bad = sum(1 for c in text if c == "\ufffd" or unicodedata.category(c) in ("Cc", "Co", "Cn"))
     return bad / max(1, len(text))
 
 

@@ -11,7 +11,8 @@ reproduce the numerical tables reported in the manuscript. It does **not**
 contain manuscript drafts, submission files, figures, model weights, local
 cluster logs, or raw university policy text.
 
-Repository URL: <https://github.com/Jie-Ni/genai-policy-coding>
+Repository URL: hidden during anonymous review. Use the anonymous repository
+link supplied in the manuscript or submission system.
 
 ## Contents
 
@@ -73,10 +74,10 @@ The source-discovery and coding scripts document the computational workflow used
 for the larger corpus. The locked aggregate CSV files are the authoritative
 public values for the current PFE manuscript package.
 
-## Compute acknowledgement
+## Compute note
 
-The original coding workflow used MUSICA high-performance computing resources
-provided through the Austrian Scientific Computing infrastructure.
+The original large-model coding workflow used institutional computing
+resources. Identifying allocation details are withheld during anonymous review.
 
 ## License
 

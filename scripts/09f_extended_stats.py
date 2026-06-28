@@ -406,12 +406,12 @@ def main() -> int:
     for r in e4:
         md.append(f"| {r['theme']} | {r['sigma2_country']:.3f} | {r['icc_logistic']:.3f} |")
     md.append("")
-    md.append("## E5. Retrospective minimum-detectable effect (伪=0.05, power=0.80, two-proportion z)")
+    md.append("## E5. Retrospective minimum-detectable effect (alpha=0.05, power=0.80, two-proportion z)")
     md.append("")
     md.append("| Pair | n_A | n_B | MDE (pp) |")
     md.append("|---|---|---|---|")
     for r in e5:
-        md.append(f"| {r['region_A']}鈥搟r['region_B']} | {r['n_A']} | {r['n_B']} "
+        md.append(f"| {r['region_A']}-{r['region_B']} | {r['n_A']} | {r['n_B']} "
                    f"| {r['mde_pp_at_alpha0.05_power0.80']:.1f} |")
     (out / "extended_summary.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     print(f"[E] wrote extended_summary.md")

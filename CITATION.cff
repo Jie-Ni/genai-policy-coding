@@ -5,9 +5,7 @@ message: >-
   please cite the accompanying manuscript when available.
 type: dataset
 authors:
-  - given-names: Jie
-    family-names: Ni
-    orcid: "https://orcid.org/0009-0003-9767-5441"
+  - name: Anonymous Authors
 abstract: >-
   Minimal reproducibility package for a 200-university cross-national analysis
   of generative-AI policy maturation in higher education. The repository
@@ -23,5 +21,3 @@ keywords:
   - comparative policy analysis
 license: CC-BY-4.0
 license-url: "https://creativecommons.org/licenses/by/4.0/"
-repository-code: "https://github.com/Jie-Ni/genai-policy-coding"
-url: "https://github.com/Jie-Ni/genai-policy-coding"

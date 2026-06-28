@@ -18,11 +18,7 @@ RESULTS = ROOT / "results"
 FIGURES = ROOT / "figures"
 PROMPTS = ROOT / "scripts" / "prompts"
 
-USER_AGENT = (
-    "genai-policy-maturation/1.0 "
-    "(University of Innsbruck Digital Science Center; "
-    "contact: ni.jie@uibk.ac.at)"
-)
+USER_AGENT = "genai-policy-maturation/1.0"
 
 
 def ensure_dir(p: Path) -> Path:
@@ -68,7 +64,7 @@ def load_csv_dicts(p: Path) -> list[dict[str, Any]]:
     if not p.exists():
         return []
     rows = list(csv.DictReader(p.open(encoding="utf-8-sig")))
-    return [{k.lstrip("锘?): v for k, v in r.items()} for r in rows]
+    return [{k.lstrip("\ufeff"): v for k, v in r.items()} for r in rows]
 
 
 def append_csv(p: Path, row: dict[str, Any]) -> None:

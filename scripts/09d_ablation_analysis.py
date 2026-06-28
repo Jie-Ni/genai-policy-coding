@@ -155,16 +155,16 @@ def main() -> int:
     for c, k in sorted(mean_per_cond.items(), key=lambda x: -x[1] if x[1] is not None else 0):
         lines.append(f"| {c} | {k:.3f} |" if k is not None else f"| {c} | nan |")
     lines.append("")
-    lines.append("## B2. T7 vendor-governance NA鈫扡A gradient across conditions")
+    lines.append("## B2. T7 vendor-governance NA-LA gradient across conditions")
     lines.append("")
     lines.append("Does NA > EU > EA > LA hold under every ablation? (Rank-order check.)")
     lines.append("")
-    lines.append("| Condition | T7 NA | T7 EU | T7 EA | T7 LA | NA鈭扡A | Rank OK? |")
+    lines.append("| Condition | T7 NA | T7 EU | T7 EA | T7 LA | NA-LA | Rank OK? |")
     lines.append("|-----------|-------|-------|-------|-------|-------|----------|")
     for r in t7_rows:
         lines.append(f"| {r['condition']} | {r['T7_NA']:.2f} | {r['T7_EU']:.2f} | "
                       f"{r['T7_EA']:.2f} | {r['T7_LA']:.2f} | {r['NA_minus_LA']:+.2f} | "
-                      f"{'鉁? if r['rank_order_correct'] else '鉁?} |")
+                      f"{'yes' if r['rank_order_correct'] else 'no'} |")
     (out_dir / "ablation_B_summary.md").write_text("\n".join(lines) + "\n",
                                                     encoding="utf-8")
     print(f"[B] wrote {out_dir / 'ablation_B_summary.md'}")

@@ -15,7 +15,7 @@ Polite scraping conventions:
   - throttle 1 request per 3 s per host (HostThrottler in common.py)
   - exponential backoff on rate limit (HTTP 429) or 5xx
   - cache responses in data/raw/_cache/<sha256-of-url>.{html,pdf,json}
-  - User-Agent identifies the project + contact email
+  - User-Agent identifies the project
 
 Usage
 -----
@@ -333,7 +333,7 @@ def text_from_html(html: bytes, charset_hint: str = "utf-8") -> str:
     return text.strip()
 
 
-# Terms that explicitly signal *generative* AI 鈥?distinguishing GenAI policy
+# Terms that explicitly signal *generative* AI, distinguishing GenAI policy
 # pages from generic AI/academic-integrity content. A page must contain at
 # least one of these (in any of the page's languages) to be archived.
 CORE_GENAI_TERMS = [
@@ -341,16 +341,16 @@ CORE_GENAI_TERMS = [
     "chatgpt", "generative ai", "genai", "large language model", "llm",
     "gpt-3", "gpt-4", "gpt-5", "claude", "gemini", "copilot",
     # Chinese
-    "鐢熸垚寮忎汉宸ユ櫤鑳?, "鐢熸垚寮廰i", "澶ц瑷€妯″瀷", "閫氱敤浜哄伐鏅鸿兘",
+    "生成式人工智能", "生成式ai", "大语言模型", "通用人工智能",
     # German
-    "generative ki", "generative k眉nstliche", "sprachmodell",
+    "generative ki", "generative künstliche", "sprachmodell",
     # Spanish / Portuguese
     "ia generativa", "inteligencia artificial generativa",
-    "intelig锚ncia artificial generativa",
+    "inteligência artificial generativa",
     # French
-    "ia g茅n茅rative", "intelligence artificielle g茅n茅rative",
+    "ia générative", "intelligence artificielle générative",
     # Japanese / Korean
-    "鐢熸垚ai", "靸濎劚順?ai", "靸濎劚 ai",
+    "生成ai", "生成 ai", "生成ai", "생성형 ai", "생성 ai",
     # Italian / Dutch
     "ia generativa", "generatieve ai",
 ]

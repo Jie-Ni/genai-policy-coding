@@ -68,12 +68,12 @@ SHARDS_DIR = ROOT / "data_processed" / "shards"
 CORE_GENAI_TERMS = [
     "chatgpt", "generative ai", "genai", "large language model", "llm",
     "gpt-3", "gpt-4", "gpt-5", "claude", "gemini", "copilot",
-    "鐢熸垚寮忎汉宸ユ櫤鑳?, "鐢熸垚寮廰i", "澶ц瑷€妯″瀷", "閫氱敤浜哄伐鏅鸿兘",
-    "generative ki", "generative k眉nstliche", "sprachmodell",
+    "生成式人工智能", "生成式ai", "大语言模型", "通用人工智能",
+    "generative ki", "generative künstliche", "sprachmodell",
     "ia generativa", "inteligencia artificial generativa",
-    "intelig锚ncia artificial generativa",
-    "ia g茅n茅rative", "intelligence artificielle g茅n茅rative",
-    "鐢熸垚ai", "靸濎劚順?ai", "靸濎劚 ai", "generatieve ai",
+    "inteligência artificial generativa",
+    "ia générative", "intelligence artificielle générative",
+    "生成ai", "生成 ai", "生成ai", "생성형 ai", "생성 ai", "generatieve ai",
 ]
 
 
@@ -81,7 +81,13 @@ def approx_tokens(text: str, lang: str) -> int:
     """Coarse token count; English ~ 1.3 tokens/word, CJK ~ 1 char/token."""
     if lang.startswith("zh") or lang in ("ja", "ko"):
         # CJK: roughly 1 token per CJK character
-        cjk = sum(1 for c in text if "銆€" <= c <= "榭?)
+        cjk = sum(
+            1
+            for c in text
+            if ("\u4e00" <= c <= "\u9fff")
+            or ("\u3040" <= c <= "\u30ff")
+            or ("\uac00" <= c <= "\ud7af")
+        )
         latin_words = len(re.findall(r"[A-Za-z]+", text))
         return cjk + latin_words
     return int(len(text.split()) * 1.3)

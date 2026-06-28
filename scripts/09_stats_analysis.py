@@ -702,7 +702,7 @@ def _build_summary_md(*, n_chunks: int, n_inst: int, bh: dict[str, Any],
         cells = []
         for r in REGIONS:
             x, n = prev_table[t][r]["x"], prev_table[t][r]["n"]
-            cells.append(f"{x}/{n} ({x/n:.0%})" if n else "鈥?)
+            cells.append(f"{x}/{n} ({x/n:.0%})" if n else "NA")
         lines.append("| " + t + " | " + " | ".join(cells) + " |")
     lines.append("")
     lines.append("## Sentiment mean by region (scale -2..+2)")
@@ -713,7 +713,7 @@ def _build_summary_md(*, n_chunks: int, n_inst: int, bh: dict[str, Any],
         cells = []
         for r in REGIONS:
             v = sent_table[u][r]
-            cells.append(f"{np.mean(v):+.2f} (n={len(v)})" if v else "鈥?)
+            cells.append(f"{np.mean(v):+.2f} (n={len(v)})" if v else "NA")
         lines.append("| " + u + " | " + " | ".join(cells) + " |")
     return "\n".join(lines) + "\n"
 
