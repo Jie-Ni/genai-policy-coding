@@ -1,4 +1,4 @@
-"""Additional rigor for IJETHE reviewers 2/3 — purely CPU/Python.
+﻿"""Additional rigor for reviewers 2/3 鈥?purely CPU/Python.
 
 A1. Bootstrap CI on cross-coder Cohen's kappa (B=2000) per theme. Reports
     point estimate + 95% percentile interval.
@@ -240,7 +240,7 @@ def annotator_model(qwen_chunks, mistral_chunks, institutions
                      ) -> list[dict[str, Any]]:
     """Per-theme: pool Qwen+Mistral chunk-level codings, fit a logistic model
     with fixed-effect region+tier+annotator_dummy and a random intercept by
-    institution. Reports the *annotator effect* — does Mistral systematically
+    institution. Reports the *annotator effect* 鈥?does Mistral systematically
     over/under-report a theme relative to Qwen?"""
     rows: list[dict[str, Any]] = []
     mistral_map = {c.chunk_id: c for c in mistral_chunks}
@@ -354,7 +354,7 @@ def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
 
 
 def _build_summary(a1, a2, a3, a4) -> str:
-    lines = ["# IJETHE GenAI Policy — Ablation Studies", ""]
+    lines = ["# GenAI Policy Maturation 鈥?Ablation Studies", ""]
     # A1
     lines.append("## A1. Bootstrap 95% CI on cross-coder kappa (B=2000)")
     lines.append("")
@@ -401,3 +401,4 @@ def _build_summary(a1, a2, a3, a4) -> str:
 
 if __name__ == "__main__":
     sys.exit(main())
+

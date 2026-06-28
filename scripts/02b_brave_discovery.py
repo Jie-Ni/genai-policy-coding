@@ -1,4 +1,4 @@
-"""Brave Search HTML discovery — bypasses DDG (403-blocked) and Bing
+﻿"""Brave Search HTML discovery 鈥?bypasses DDG (403-blocked) and Bing
 (JS-rendered shell with no anonymous results) to recover non-English
 policy URLs that the homepage-link crawler misses.
 
@@ -136,7 +136,7 @@ def discover_one_institution(inst: dict[str, Any], queries_cfg: dict[str, Any],
             logger.warning("%s brave q=%r 429 (%.1fs); skipping remaining queries",
                           iid, q[:40], elapsed)
             per_query_count[q] = -429
-            # On 429, bail out of this institution rather than burning 60s × N
+            # On 429, bail out of this institution rather than burning 60s 脳 N
             # waiting on backoff. We move to the next institution; the throttler
             # will rate-limit globally.
             break
@@ -152,7 +152,7 @@ def discover_one_institution(inst: dict[str, Any], queries_cfg: dict[str, Any],
             hits.append({"institution_id": iid, "query_lang": lang,
                           "query": q, "url": u})
         per_query_count[q] = len(new)
-        logger.info("%s brave q=%r → %d urls (new=%d, %.1fs)",
+        logger.info("%s brave q=%r 鈫?%d urls (new=%d, %.1fs)",
                      iid, q[:40], len(urls), len(new), elapsed)
         # Once we have plenty, don't burn more queries on this institution
         if len(hits) >= 25:
@@ -235,3 +235,4 @@ def _flush(hits: list[dict[str, str]], summary: list[dict[str, Any]]) -> None:
 
 if __name__ == "__main__":
     sys.exit(main())
+

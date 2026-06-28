@@ -1,39 +1,27 @@
 cff-version: 1.2.0
-title: "Cross-National GenAI Policy Coding"
+title: "GenAI Policy Maturation"
 message: >-
-  If you use this dataset, codebook, or analysis pipeline, please cite the
-  accompanying manuscript (currently under double-anonymous review; full
-  citation will be added at acceptance).
+  If you use this codebook, derived aggregate data, or analysis pipeline,
+  please cite the accompanying manuscript when available.
 type: dataset
 authors:
   - given-names: Jie
     family-names: Ni
-    email: njie@seu.edu.cn
     orcid: "https://orcid.org/0009-0003-9767-5441"
-    affiliation: >-
-      State Key Laboratory of Digital Medical Engineering, School of
-      Biological Science and Medical Engineering, Southeast University,
-      Nanjing 211102, China; and Data Science Group, Digital Science
-      Centre, University of Innsbruck, Innsbruck 6020, Austria
 abstract: >-
-  A reproducible open-weight dual-LLM coding pipeline for analysing
-  university generative-AI policy text across world regions and languages.
-  Includes the 64-institution sampling frame, the 22-query multilingual
-  search battery, the eight-theme codebook with sentiment rubric and 16
-  worked few-shot examples, 338 dual-LLM coded chunks (Qwen3.6-27B with
-  Mistral-Small-3.2-24B cross-validation under schema-constrained JSON
-  decoding), 40 expert hand-coded gold-standard chunks, all confirmatory,
-  sensitivity, and ablation analysis CSVs, and the full Python analysis
-  pipeline.
+  Minimal reproducibility package for a 200-university cross-national analysis
+  of generative-AI policy maturation in higher education. The repository
+  contains the codebook, analysis scripts, and aggregate derived result tables.
+  It does not redistribute verbatim university policy text, manuscript files,
+  generated figures, model weights, or local cluster logs.
 keywords:
   - generative AI policy
-  - cross-national higher education
+  - policy futures in education
+  - higher education governance
   - institutional logics
   - large language model coding
-  - inter-rater reliability
   - comparative policy analysis
-  - reproducible methodology
 license: CC-BY-4.0
 license-url: "https://creativecommons.org/licenses/by/4.0/"
-repository-code: ""
-url: ""
+repository-code: "https://github.com/Jie-Ni/genai-policy-coding"
+url: "https://github.com/Jie-Ni/genai-policy-coding"

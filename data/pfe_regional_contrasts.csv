@@ -1,0 +1,3 @@
+theme,contrast,region_a,n_a,events_a,prevalence_a,region_b,n_b,events_b,prevalence_b,p_value,note
+T7_vendor_governance,NA_vs_LA,NA,60,49,0.8167,LA,40,5,0.125,1.05e-7,Vendor governance is more prevalent in North America than Latin America
+T8_pedagogical_redesign,EA_vs_EU,EA,45,28,0.6222,EU,55,18,0.3273,0.003,Pedagogical redesign is more prevalent in East Asia than Europe

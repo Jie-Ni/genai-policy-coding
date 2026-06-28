@@ -1,4 +1,4 @@
-"""Extract clean text from the raw archived HTML and PDF documents.
+﻿"""Extract clean text from the raw archived HTML and PDF documents.
 
 Walks data/raw/<region>/<institution_id>/*.{html,pdf}, extracts text, runs
 a battery of cleaning + encoding-validity checks, writes one row per
@@ -10,7 +10,7 @@ Key concerns this script addresses
    Solution: trafilatura (preferred) or readability-lxml (fallback) or
    a minimal regex-strip if neither library is installed.
 
-2. **PDF mojibake** (the v15.x problem with Chinese 培养方案 PDFs that
+2. **PDF mojibake** (the v15.x problem with Chinese 鍩瑰吇鏂规 PDFs that
    had broken CMap-to-Unicode mappings): detect by looking for the U+FFFD
    replacement character or by a high rate of non-printable bytes; flag
    for OCR fallback.
@@ -99,24 +99,24 @@ def detect_language(text: str, fallback: str = "und") -> str:
         except Exception:
             pass
     # Script heuristic
-    cjk = sum(1 for c in sample if '一' <= c <= '鿿')
+    cjk = sum(1 for c in sample if '涓€' <= c <= '榭?)
     if cjk > 30:
         return "zh"
-    hira = sum(1 for c in sample if '぀' <= c <= 'ゟ')
-    kata = sum(1 for c in sample if '゠' <= c <= 'ヿ')
+    hira = sum(1 for c in sample if '銇€' <= c <= '銈?)
+    kata = sum(1 for c in sample if '銈? <= c <= '銉?)
     if hira + kata > 30:
         return "ja"
-    hangul = sum(1 for c in sample if '가' <= c <= '힣')
+    hangul = sum(1 for c in sample if '臧€' <= c <= '頌?)
     if hangul > 30:
         return "ko"
     # Latin-script
-    if any(c in sample for c in "äöüÄÖÜß"):
+    if any(c in sample for c in "盲枚眉脛脰脺脽"):
         return "de"
-    if any(c in sample for c in "ñáéíóúü¿¡"):
+    if any(c in sample for c in "帽谩茅铆贸煤眉驴隆"):
         return "es"
-    if any(c in sample for c in "ãõçáéíóúâêô"):
+    if any(c in sample for c in "茫玫莽谩茅铆贸煤芒锚么"):
         return "pt"
-    if any(c in sample for c in "àâçéèêëîïôûùü"):
+    if any(c in sample for c in "脿芒莽茅猫锚毛卯茂么没霉眉"):
         return "fr"
     return fallback
 
@@ -206,7 +206,7 @@ def mojibake_score(text: str) -> float:
     """
     if not text:
         return 1.0
-    bad = sum(1 for c in text if c == "�" or unicodedata.category(c) in ("Cc", "Co", "Cn"))
+    bad = sum(1 for c in text if c == "锟? or unicodedata.category(c) in ("Cc", "Co", "Cn"))
     return bad / max(1, len(text))
 
 
@@ -412,3 +412,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+

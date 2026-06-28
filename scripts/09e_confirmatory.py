@@ -1,19 +1,19 @@
-"""Confirmatory inferential tests with adequate statistical power.
+﻿"""Confirmatory inferential tests with adequate statistical power.
 
 Replaces (or supplements) the TOST framework, which is fundamentally
-underpowered at n=13-20 per region with ε=0.10 (Schuirmann 1987 + BH-FDR
+underpowered at n=13-20 per region with 蔚=0.10 (Schuirmann 1987 + BH-FDR
 correction).
 
 The TOST family answered the wrong question ("are the regions equivalent
-within ±10pp?"). The substantive question is "are the regions different?"
+within 卤10pp?"). The substantive question is "are the regions different?"
 which is reachable via:
 
-C1. Chi-square test of independence on the 4-region × 8-theme contingency
+C1. Chi-square test of independence on the 4-region 脳 8-theme contingency
     table. H0: theme prevalence is independent of region. Cramer's V as
     effect size.
 
 C2. Per-theme Wald tests on region fixed-effect coefficients in the
-    mixed-effects logistic regression already fit by 09. Reports β, SE,
+    mixed-effects logistic regression already fit by 09. Reports 尾, SE,
     z, p for each region (NA reference) per theme.
 
 C3. Cochran-Armitage trend test for the N-S gradient on each theme. With
@@ -23,7 +23,7 @@ C3. Cochran-Armitage trend test for the N-S gradient on each theme. With
 
 C4. Pairwise two-proportion z-tests for the headline finding (T7 vendor
     governance and T4 integrity), with Bonferroni correction for
-    6 pairwise comparisons (α/6 = 0.0083).
+    6 pairwise comparisons (伪/6 = 0.0083).
 
 C5. ANOVA-style F-test for regional mean differences in 4 sentiment
     use-cases. Reports F, df, p per use-case.
@@ -67,7 +67,7 @@ SEED = _stats.SEED
 
 
 # ---------------------------------------------------------------------------
-# C1. Chi-square 4-region × 8-theme contingency
+# C1. Chi-square 4-region 脳 8-theme contingency
 # ---------------------------------------------------------------------------
 
 
@@ -109,12 +109,12 @@ def chi2_region_theme(chunks, institutions) -> tuple[dict[str, Any], list[dict[s
                 chi2 += (o_no - e_no) ** 2 / e_no
     # df = (rows-1)*(cols-1) for a true contingency; but we collapse each theme
     # into its own 2-row table with shared region structure, so we sum 8
-    # independent 2x4 tables, each with df=(2-1)*(4-1)=3 → total df = 24.
+    # independent 2x4 tables, each with df=(2-1)*(4-1)=3 鈫?total df = 24.
     df = 3 * len(THEMES)
     pval = chi2_sf(chi2, df)
     n = int(region_totals.sum())
     # Cramer's V (collapsed): sqrt(chi2 / (n * (min_dim - 1))); here min_dim
-    # across an 8-table family is heuristic — report normalized by n*8 instead
+    # across an 8-table family is heuristic 鈥?report normalized by n*8 instead
     cramers_v = math.sqrt(chi2 / (n * 8)) if n > 0 else float("nan")
     head = {"chi2": chi2, "df": df, "p_value": pval, "cramers_v": cramers_v,
             "n_institutions": n}
@@ -418,7 +418,7 @@ def main() -> int:
     c2 = parse_mixed_logit_csvs(out)
     _write_csv(out / "confirmatory_C2_mixed_logit_region.csv", c2)
     n_sig = sum(1 for r in c2 if r["p_two_sided"] is not None and r["p_two_sided"] < 0.05)
-    print(f"[C2] mixed-logit region effects: {n_sig}/{len(c2)} significant at α=0.05")
+    print(f"[C2] mixed-logit region effects: {n_sig}/{len(c2)} significant at 伪=0.05")
 
     # C3
     c3 = cochran_armitage(chunks, institutions)
@@ -444,15 +444,15 @@ def main() -> int:
     print(f"[C5] sentiment ANOVA: {n_sig_c5}/{len(c5)} use-cases p<0.05")
 
     # Summary
-    lines = ["# Confirmatory Tests — Are Regions Different?", ""]
-    lines.append(f"## C1. Chi-square: region × theme")
-    lines.append(f"- χ²({head['df']}) = **{head['chi2']:.2f}**, "
+    lines = ["# Confirmatory Tests 鈥?Are Regions Different?", ""]
+    lines.append(f"## C1. Chi-square: region 脳 theme")
+    lines.append(f"- 蠂虏({head['df']}) = **{head['chi2']:.2f}**, "
                  f"**p = {head['p_value']:.4g}**, Cramer's V = {head['cramers_v']:.3f}")
     lines.append("")
     lines.append(f"## C2. Mixed-logit region coefficients (NA reference)")
-    lines.append(f"- **{n_sig}/{len(c2)}** region coefficients significant at α=0.05")
+    lines.append(f"- **{n_sig}/{len(c2)}** region coefficients significant at 伪=0.05")
     lines.append("")
-    lines.append("| Theme | Term | β | SE | z | p |")
+    lines.append("| Theme | Term | 尾 | SE | z | p |")
     lines.append("|-------|------|----|----|----|----|")
     for r in c2:
         lines.append(f"| {r['theme']} | {r['term']} | {r['beta']:+.3f} | "
@@ -466,7 +466,7 @@ def main() -> int:
     for r in c3:
         lines.append(f"| {r['theme']} | {r['Z']:+.3f} | {r['p_two_sided']:.4g} |")
     lines.append("")
-    lines.append(f"## C4. Pairwise z-tests for T7/T4/T5 (Bonferroni α/6=0.0083)")
+    lines.append(f"## C4. Pairwise z-tests for T7/T4/T5 (Bonferroni 伪/6=0.0083)")
     lines.append(f"- **{n_bonf_sig}/{len(c4)}** pairs reject at Bonferroni-corrected level")
     lines.append("")
     lines.append("| Theme | Pair | diff | z | p | Reject? |")
@@ -474,7 +474,7 @@ def main() -> int:
     for r in c4:
         lines.append(f"| {r['theme']} | {r['region_A']}-{r['region_B']} | "
                       f"{r['diff']:+.2f} | {r['z']:+.2f} | {r['p_two_sided']:.4g} | "
-                      f"{'✓' if r['reject_at_bonferroni'] else '·'} |")
+                      f"{'鉁? if r['reject_at_bonferroni'] else '路'} |")
     lines.append("")
     lines.append(f"## C5. ANOVA on sentiment means (per use-case)")
     lines.append(f"- **{n_sig_c5}/{len(c5)}** use-cases show significant regional differences")
@@ -509,3 +509,4 @@ def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
 
 if __name__ == "__main__":
     sys.exit(main())
+

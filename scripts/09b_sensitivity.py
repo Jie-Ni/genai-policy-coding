@@ -1,4 +1,4 @@
-"""Sensitivity analyses for the IJETHE GenAI policy paper.
+﻿"""Sensitivity analyses for the GenAI policy maturation paper.
 
 Three subsample-based robustness checks that address reviewer-2's typical
 concerns about (1) selection bias in corpus construction, (2) coder
@@ -274,10 +274,10 @@ def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
 
 
 def _build_summary(s1, s2, s3) -> str:
-    lines = ["# IJETHE GenAI Policy — Sensitivity Analyses", ""]
+    lines = ["# GenAI Policy Maturation 鈥?Sensitivity Analyses", ""]
 
     # S1
-    lines.append("## S1. Institution-level resample stability (80% × 1000)")
+    lines.append("## S1. Institution-level resample stability (80% 脳 1000)")
     lines.append("")
     lines.append("Headline pair-differences and the fraction of 1000 random "
                  "80%-institution subsamples in which the difference keeps "
@@ -325,3 +325,4 @@ def _build_summary(s1, s2, s3) -> str:
 
 if __name__ == "__main__":
     sys.exit(main())
+

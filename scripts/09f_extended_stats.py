@@ -1,17 +1,17 @@
-"""Extended inferential analyses to address reviewer concerns identified
+﻿"""Extended inferential analyses to address reviewer concerns identified
 in the v2 audit:
 
-E1. Wilson 95% CI for every (region × theme) prevalence point estimate.
+E1. Wilson 95% CI for every (region 脳 theme) prevalence point estimate.
 E2. Holm-Bonferroni correction on the same pairwise z-test family that
-    Bonferroni rejected — Holm is uniformly more powerful and preferred.
+    Bonferroni rejected 鈥?Holm is uniformly more powerful and preferred.
 E3. Kruskal-Wallis non-parametric test for the sentiment regional means
     (does the ANOVA-null hold without normality assumption?).
 E4. Intra-class correlation (ICC) for the country random effect in the
-    mixed-logit, computed as σ²_country / (σ²_country + π²/3) for the
+    mixed-logit, computed as 蟽虏_country / (蟽虏_country + 蟺虏/3) for the
     logistic linking function.
-E5. Sample-size / power retrospective using the canonical 4×2 chi-square
-    test for a single theme — what regional gap size could we detect at
-    α=0.05, power=0.80, given n_per_region ∈ {11, 13, 18, 20}?
+E5. Sample-size / power retrospective using the canonical 4脳2 chi-square
+    test for a single theme 鈥?what regional gap size could we detect at
+    伪=0.05, power=0.80, given n_per_region 鈭?{11, 13, 18, 20}?
 
 Outputs
 -------
@@ -160,7 +160,7 @@ def kruskal_wallis(groups: list[list[float]]) -> tuple[float, int, float]:
     H = 12.0 / (n * (n + 1)) * sum((rs ** 2) / np_ for rs, np_ in zip(rank_sum, n_per)) - 3 * (n + 1)
     df = len(groups) - 1
     # tie correction
-    # compute Σ(t^3 - t) over ties
+    # compute 危(t^3 - t) over ties
     ties = []
     i = 0
     while i < len(pairs):
@@ -178,7 +178,7 @@ def kruskal_wallis(groups: list[list[float]]) -> tuple[float, int, float]:
 
 
 def chi2_sf(x: float, df: int) -> float:
-    """Survival function 1 - F(x; df) — reuses 09e gammaincc."""
+    """Survival function 1 - F(x; df) 鈥?reuses 09e gammaincc."""
     if x <= 0:
         return 1.0
     return _gammaincc(df / 2.0, x / 2.0)
@@ -256,8 +256,8 @@ def E3_kruskal(chunks, institutions) -> list[dict[str, Any]]:
 
 
 def E4_icc(stats_dir: Path) -> list[dict[str, Any]]:
-    """For each theme, read the mixed-logit fit and report ICC = σ²/(σ² + π²/3).
-    The logistic-link ICC denominator is π²/3 ≈ 3.290."""
+    """For each theme, read the mixed-logit fit and report ICC = 蟽虏/(蟽虏 + 蟺虏/3).
+    The logistic-link ICC denominator is 蟺虏/3 鈮?3.290."""
     rows = []
     for theme in THEMES:
         p = stats_dir / f"mixed_logit_{theme}.csv"
@@ -277,13 +277,13 @@ def E4_icc(stats_dir: Path) -> list[dict[str, Any]]:
 
 
 def E5_power(n_per_region: dict[str, int]) -> list[dict[str, Any]]:
-    """Retrospective power: for a 2-region chi-square at α=0.05 power=0.80,
+    """Retrospective power: for a 2-region chi-square at 伪=0.05 power=0.80,
     what gap size (in pp) is the minimum detectable effect, given the
     observed per-region n?"""
     rows = []
     z_alpha = 1.96
     z_beta = 0.8416
-    # Cohen's φ = (z_α + z_β) / √n  → MDE in proportion difference
+    # Cohen's 蠁 = (z_伪 + z_尾) / 鈭歯  鈫?MDE in proportion difference
     # using normal approx for two proportions assuming p1=p2=0.5 (max variance)
     for a in REGIONS:
         for b in REGIONS:
@@ -293,7 +293,7 @@ def E5_power(n_per_region: dict[str, int]) -> list[dict[str, Any]]:
             n2 = n_per_region.get(b, 0)
             if n1 == 0 or n2 == 0:
                 continue
-            # MDE on Δp assuming p̄ = 0.5: SE_pool = √(0.25*(1/n1+1/n2))
+            # MDE on 螖p assuming p虅 = 0.5: SE_pool = 鈭?0.25*(1/n1+1/n2))
             se = math.sqrt(0.25 * (1 / n1 + 1 / n2))
             mde = (z_alpha + z_beta) * se
             rows.append({"region_A": a, "region_B": b,
@@ -333,18 +333,18 @@ def main() -> int:
 
     e1 = E1_wilson(chunks, institutions)
     _write_csv(out / "extended_E1_wilson_ci.csv", e1)
-    print(f"[E1] wrote Wilson CIs for {len(e1)} (region × theme) cells")
+    print(f"[E1] wrote Wilson CIs for {len(e1)} (region 脳 theme) cells")
 
     e2 = E2_holm(chunks, institutions,
                   ["T7_vendor_governance", "T4_integrity", "T5_disclosure"])
     _write_csv(out / "extended_E2_holm_pairwise.csv", e2)
     n_holm = sum(r["reject_at_holm_005"] for r in e2)
-    print(f"[E2] Holm-Bonferroni: {n_holm}/{len(e2)} pairs reject at α=0.05")
+    print(f"[E2] Holm-Bonferroni: {n_holm}/{len(e2)} pairs reject at 伪=0.05")
 
     e3 = E3_kruskal(chunks, institutions)
     _write_csv(out / "extended_E3_kruskal_sentiment.csv", e3)
     n_kr = sum(1 for r in e3 if not math.isnan(r["p_value"]) and r["p_value"] < 0.05)
-    print(f"[E3] Kruskal-Wallis: {n_kr}/{len(e3)} use-cases reject H0 at α=0.05")
+    print(f"[E3] Kruskal-Wallis: {n_kr}/{len(e3)} use-cases reject H0 at 伪=0.05")
 
     e4 = E4_icc(out)
     _write_csv(out / "extended_E4_icc.csv", e4)
@@ -367,11 +367,11 @@ def main() -> int:
             region_n[inst["region"]] += 1
     e5 = E5_power(region_n)
     _write_csv(out / "extended_E5_power_retrospective.csv", e5)
-    print(f"[E5] retrospective MDE table for {len(e5)} region pairs at α=0.05 power=0.80")
+    print(f"[E5] retrospective MDE table for {len(e5)} region pairs at 伪=0.05 power=0.80")
 
     # Summary markdown
-    md = ["# Extended Analyses — Reviewer-Concern Closure", ""]
-    md.append("## E1. Wilson 95% confidence intervals (per region × theme)")
+    md = ["# Extended Analyses 鈥?Reviewer-Concern Closure", ""]
+    md.append("## E1. Wilson 95% confidence intervals (per region 脳 theme)")
     md.append("")
     md.append("| Theme | NA | EU | EA | LA |")
     md.append("|---|---|---|---|---|")
@@ -387,7 +387,7 @@ def main() -> int:
     md.append("")
     md.append("## E2. Holm-Bonferroni pairwise z (T7, T4, T5)")
     md.append("")
-    md.append(f"- **{n_holm}/{len(e2)}** pairs reject H0 at α=0.05 with Holm correction")
+    md.append(f"- **{n_holm}/{len(e2)}** pairs reject H0 at 伪=0.05 with Holm correction")
     md.append(
         "  (Holm is uniformly at least as powerful as Bonferroni; identical or more rejections expected.)")
     md.append("")
@@ -397,21 +397,21 @@ def main() -> int:
     md.append("|---|---|---|---|")
     for r in e3:
         md.append(f"| {r['use_case']} | {r['H']:.3f} | {r['df']} | {r['p_value']:.4g} |")
-    md.append(f"\n- **{n_kr}/{len(e3)}** use-cases reject H0 (parametric ANOVA also rejected 0/4 — non-parametric confirms).")
+    md.append(f"\n- **{n_kr}/{len(e3)}** use-cases reject H0 (parametric ANOVA also rejected 0/4 鈥?non-parametric confirms).")
     md.append("")
     md.append("## E4. Intra-class correlation (ICC) for country random effect")
     md.append("")
-    md.append("| Theme | σ²_country | ICC (logistic link) |")
+    md.append("| Theme | 蟽虏_country | ICC (logistic link) |")
     md.append("|---|---|---|")
     for r in e4:
         md.append(f"| {r['theme']} | {r['sigma2_country']:.3f} | {r['icc_logistic']:.3f} |")
     md.append("")
-    md.append("## E5. Retrospective minimum-detectable effect (α=0.05, power=0.80, two-proportion z)")
+    md.append("## E5. Retrospective minimum-detectable effect (伪=0.05, power=0.80, two-proportion z)")
     md.append("")
     md.append("| Pair | n_A | n_B | MDE (pp) |")
     md.append("|---|---|---|---|")
     for r in e5:
-        md.append(f"| {r['region_A']}–{r['region_B']} | {r['n_A']} | {r['n_B']} "
+        md.append(f"| {r['region_A']}鈥搟r['region_B']} | {r['n_A']} | {r['n_B']} "
                    f"| {r['mde_pp_at_alpha0.05_power0.80']:.1f} |")
     (out / "extended_summary.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     print(f"[E] wrote extended_summary.md")
@@ -420,3 +420,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+

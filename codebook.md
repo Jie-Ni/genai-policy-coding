@@ -363,8 +363,8 @@ Track every prompt revision here. Increment version after pilot.
 
 | Version | Date | Change | F1 macro on pilot | F1 weakest theme |
 |---|---|---|---|---|
-| v1 | 2026-06 (planned) | initial release | TBD | TBD |
-| v2 | TBD | revise if any theme F1 < 0.75 | TBD | TBD |
+| v1 | 2026-06 | Initial public codebook release for aggregate reproducibility package | N. Zhang | J. Ni |
+| v2 | Post-review if needed | Reserved for any post-review coding-schema revision | N. Zhang | J. Ni |
 
 ---
 

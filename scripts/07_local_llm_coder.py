@@ -1,4 +1,4 @@
-"""Open-weight LLM-as-coder via vLLM offline batched inference.
+﻿"""Open-weight LLM-as-coder via vLLM offline batched inference.
 
 Runs the codebook v1 prompt over a shard of policy chunks. Designed for
 SLURM job-array execution: one job = one shard = one node = one H100.
@@ -113,7 +113,7 @@ def load_prompt_template(prompt_md: Path) -> tuple[str, list[dict[str, str]]]:
         ```
         <system text>
         ```
-        ### Example N — ...
+        ### Example N 鈥?...
         ```
         TEXT
         <chunk text>
@@ -128,7 +128,7 @@ def load_prompt_template(prompt_md: Path) -> tuple[str, list[dict[str, str]]]:
     # Examples
     examples: list[dict[str, str]] = []
     for block in re.finditer(
-        r"### Example \d+ — [^\n]*\n+```\s*\nTEXT\s*\n([\s\S]+?)EXPECTED OUTPUT\s*\n([\s\S]+?)```",
+        r"### Example \d+ 鈥?[^\n]*\n+```\s*\nTEXT\s*\n([\s\S]+?)EXPECTED OUTPUT\s*\n([\s\S]+?)```",
         raw,
     ):
         text = block.group(1).strip().strip('"').strip()
@@ -253,7 +253,7 @@ def main() -> int:
     ap.add_argument("--temperature", type=float, default=0.0,
                     help="sampling temperature; default 0 = deterministic")
     ap.add_argument("--enable-thinking", action="store_true",
-                    help="Qwen3 only: keep reasoning/CoT block. Default OFF — "
+                    help="Qwen3 only: keep reasoning/CoT block. Default OFF 鈥?"
                          "reasoning wastes tokens before the JSON for our task.")
     ap.add_argument("--dry-run", action="store_true",
                     help="validate inputs + prompt build without invoking vLLM")
@@ -377,7 +377,7 @@ def main() -> int:
             # fall back to a single-prompt format
             prompts = []
             for c in batch:
-                # naive concat — depends on tokenizer chat template
+                # naive concat 鈥?depends on tokenizer chat template
                 p = f"<|im_start|>system\n{system_prompt}<|im_end|>\n"
                 p += f"<|im_start|>user\n{build_user_prompt(c, examples)}<|im_end|>\n"
                 p += "<|im_start|>assistant\n"
@@ -440,3 +440,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+

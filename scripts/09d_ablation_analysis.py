@@ -1,4 +1,4 @@
-"""Compare ablation conditions to the 16-fewshot/T=0/seed=11 baseline.
+﻿"""Compare ablation conditions to the 16-fewshot/T=0/seed=11 baseline.
 
 Inputs
 ------
@@ -6,7 +6,7 @@ results/codes/ablation/<condition>/codes.jsonl   for each condition
 
 Outputs
 -------
-results/stats/ablation_B_fewshot_kappa.csv     # per-theme κ vs baseline
+results/stats/ablation_B_fewshot_kappa.csv     # per-theme 魏 vs baseline
 results/stats/ablation_B_temperature_kappa.csv # T=0.3 vs T=0
 results/stats/ablation_B_seed_kappa.csv        # seed 22/42 vs 11
 results/stats/ablation_B_prevalence.csv        # per-region theme prevalence in each condition
@@ -99,7 +99,7 @@ def main() -> int:
 
     base = codes_by_cond[BASELINE]
 
-    # B1: per-condition κ vs baseline
+    # B1: per-condition 魏 vs baseline
     rows: list[dict] = []
     for c in conditions:
         if c == BASELINE:
@@ -123,7 +123,7 @@ def main() -> int:
                                    "theme": t, "prevalence": v})
     _write_csv(out_dir / "ablation_B_region_prevalence.csv", prev_rows)
 
-    # B3: T7 NA>LA gap robustness — does the most striking finding hold under all conditions?
+    # B3: T7 NA>LA gap robustness 鈥?does the most striking finding hold under all conditions?
     t7_rows: list[dict] = []
     for c in conditions:
         rp = region_prevalence(codes_by_cond[c])
@@ -140,13 +140,13 @@ def main() -> int:
     _write_csv(out_dir / "ablation_B_T7_gradient.csv", t7_rows)
 
     # Markdown summary
-    lines = ["# Ablation Studies — Few-shot, Temperature, Seed", ""]
+    lines = ["# Ablation Studies 鈥?Few-shot, Temperature, Seed", ""]
     lines.append(f"All ablation runs use 80-chunk stratified subset (20/region) "
                  f"of the production corpus. Baseline = {BASELINE} (16-shot, T=0, seed=11).")
     lines.append("")
-    lines.append("## B1. Cohen's κ vs baseline (mean across 8 themes)")
+    lines.append("## B1. Cohen's 魏 vs baseline (mean across 8 themes)")
     lines.append("")
-    lines.append("| Condition | Mean κ vs baseline |")
+    lines.append("| Condition | Mean 魏 vs baseline |")
     lines.append("|-----------|---------------------|")
     mean_per_cond = {}
     for r in rows:
@@ -155,16 +155,16 @@ def main() -> int:
     for c, k in sorted(mean_per_cond.items(), key=lambda x: -x[1] if x[1] is not None else 0):
         lines.append(f"| {c} | {k:.3f} |" if k is not None else f"| {c} | nan |")
     lines.append("")
-    lines.append("## B2. T7 vendor-governance NA→LA gradient across conditions")
+    lines.append("## B2. T7 vendor-governance NA鈫扡A gradient across conditions")
     lines.append("")
     lines.append("Does NA > EU > EA > LA hold under every ablation? (Rank-order check.)")
     lines.append("")
-    lines.append("| Condition | T7 NA | T7 EU | T7 EA | T7 LA | NA−LA | Rank OK? |")
+    lines.append("| Condition | T7 NA | T7 EU | T7 EA | T7 LA | NA鈭扡A | Rank OK? |")
     lines.append("|-----------|-------|-------|-------|-------|-------|----------|")
     for r in t7_rows:
         lines.append(f"| {r['condition']} | {r['T7_NA']:.2f} | {r['T7_EU']:.2f} | "
                       f"{r['T7_EA']:.2f} | {r['T7_LA']:.2f} | {r['NA_minus_LA']:+.2f} | "
-                      f"{'✓' if r['rank_order_correct'] else '✗'} |")
+                      f"{'鉁? if r['rank_order_correct'] else '鉁?} |")
     (out_dir / "ablation_B_summary.md").write_text("\n".join(lines) + "\n",
                                                     encoding="utf-8")
     print(f"[B] wrote {out_dir / 'ablation_B_summary.md'}")
@@ -191,3 +191,4 @@ def _write_csv(path: Path, rows: list[dict]) -> None:
 
 if __name__ == "__main__":
     sys.exit(main())
+

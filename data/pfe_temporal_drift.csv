@@ -1,0 +1,4 @@
+theme,mid_2023_n,mid_2023_events,mid_2023_prevalence,late_2025_n,late_2025_events,late_2025_prevalence,shift_pp,p_value,note
+T7_vendor_governance,64,8,0.125,64,31,0.484,35.9,2.14e-5,Vendor governance grew from interim guidance to institutional governance
+T8_pedagogical_redesign,64,12,0.188,64,29,0.453,26.5,1.08e-3,Pedagogical redesign increased in the paired temporal subset
+T4_academic_integrity,64,56,0.875,64,57,0.891,1.6,0.78,Academic-integrity language was already saturated and remained stable

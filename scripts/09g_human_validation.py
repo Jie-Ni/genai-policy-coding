@@ -1,8 +1,8 @@
-"""Cohen's kappa between expert hand-coded gold standard and Qwen3.6 codings,
+﻿"""Cohen's kappa between expert hand-coded gold standard and Qwen3.6 codings,
 per theme + overall, with bootstrap 95% CIs.
 
 Inputs:
-  data_processed/expert_gold_codes.csv  (40 chunks × 8 themes × 4 sentiments)
+  data_processed/expert_gold_codes.csv  (40 chunks 脳 8 themes 脳 4 sentiments)
   results/codes/qwen36/shard_*.jsonl   (full coding output)
 
 Output:
@@ -42,7 +42,7 @@ def cohen_kappa(a, b):
 
 
 def quadratic_kappa(a, b):
-    """Weighted κ with quadratic weights for ordinal sentiment."""
+    """Weighted 魏 with quadratic weights for ordinal sentiment."""
     if not a:
         return float("nan")
     n = len(a)
@@ -141,9 +141,9 @@ def main():
 
     # Summary markdown
     md = ["# Human-Expert vs Qwen3.6 Agreement (n = " + str(len(common)) + " chunks)", ""]
-    md.append("## Binary themes (Cohen's κ, unweighted)")
+    md.append("## Binary themes (Cohen's 魏, unweighted)")
     md.append("")
-    md.append("| Theme | n | κ | 95% CI | raw agreement | expert+ | qwen+ |")
+    md.append("| Theme | n | 魏 | 95% CI | raw agreement | expert+ | qwen+ |")
     md.append("|---|---|---|---|---|---|---|")
     bin_ks = []
     for r in rows:
@@ -152,11 +152,11 @@ def main():
             md.append(f"| {r['variable']} | {r['n']} | {r['kappa']:.3f} | "
                        f"[{r['ci95_lo']:.3f}, {r['ci95_hi']:.3f}] | "
                        f"{r['raw_agreement']:.2%} | {r['expert_pos']} | {r['qwen_pos']} |")
-    md.append(f"\n**Mean theme κ vs human expert = {np.mean(bin_ks):.3f}**")
+    md.append(f"\n**Mean theme 魏 vs human expert = {np.mean(bin_ks):.3f}**")
     md.append("")
-    md.append("## Ordinal sentiment (quadratic-weighted Cohen's κ)")
+    md.append("## Ordinal sentiment (quadratic-weighted Cohen's 魏)")
     md.append("")
-    md.append("| Use case | n | κ | 95% CI | raw agreement |")
+    md.append("| Use case | n | 魏 | 95% CI | raw agreement |")
     md.append("|---|---|---|---|---|")
     sent_ks = []
     for r in rows:
@@ -165,12 +165,13 @@ def main():
             md.append(f"| {r['variable']} | {r['n']} | {r['kappa']:.3f} | "
                        f"[{r['ci95_lo']:.3f}, {r['ci95_hi']:.3f}] | "
                        f"{r['raw_agreement']:.2%} |")
-    md.append(f"\n**Mean sentiment quadratic-κ vs human expert = {np.mean(sent_ks):.3f}**")
+    md.append(f"\n**Mean sentiment quadratic-魏 vs human expert = {np.mean(sent_ks):.3f}**")
     (OUT / "human_validation_summary.md").write_text("\n".join(md) + "\n",
                                                       encoding="utf-8")
-    print(f"[H] mean theme κ vs human = {np.mean(bin_ks):.3f}")
-    print(f"[H] mean sentiment κ vs human = {np.mean(sent_ks):.3f}")
+    print(f"[H] mean theme 魏 vs human = {np.mean(bin_ks):.3f}")
+    print(f"[H] mean sentiment 魏 vs human = {np.mean(sent_ks):.3f}")
 
 
 if __name__ == "__main__":
     main()
+

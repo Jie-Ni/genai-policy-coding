@@ -1,4 +1,4 @@
-"""Polite multilingual scraper for university GenAI policy documents.
+﻿"""Polite multilingual scraper for university GenAI policy documents.
 
 For each institution in data/institution_list.csv:
   1. read its primary language + secondary languages from the CSV
@@ -131,7 +131,7 @@ def can_fetch(url: str) -> bool:
             rp.read()
             _robots_cache[host] = rp
         except Exception as exc:
-            logger.warning("robots fetch failed for %s: %s — assuming allowed", host, exc)
+            logger.warning("robots fetch failed for %s: %s 鈥?assuming allowed", host, exc)
             _robots_cache[host] = None
     rp = _robots_cache[host]
     if rp is None:
@@ -247,7 +247,7 @@ def discover_candidate_urls_homepage_crawl(institution: dict[str, Any],
                                             max_candidates: int = 20) -> list[str]:
     """Start from the institution homepage and follow <a> links whose anchor
     text or href matches language-specific policy keywords. Bypasses search
-    engines entirely — works for sites with localized URL conventions
+    engines entirely 鈥?works for sites with localized URL conventions
     (Chinese, Portuguese, German subpaths) that English-only patterns miss.
     """
     home = institution["website"].rstrip("/")
@@ -264,7 +264,7 @@ def discover_candidate_urls_homepage_crawl(institution: dict[str, Any],
         keywords += [t.lower() for t in lc.get("keyword_density_terms", [])]
         for q in lc.get("queries", []):
             # split on whitespace / punctuation for token-level matching
-            for tok in re.split(r"[\s,，。;；]+", q):
+            for tok in re.split(r"[\s,锛屻€?锛沒+", q):
                 tok = tok.strip().lower()
                 if len(tok) >= 2:
                     keywords.append(tok)
@@ -333,7 +333,7 @@ def text_from_html(html: bytes, charset_hint: str = "utf-8") -> str:
     return text.strip()
 
 
-# Terms that explicitly signal *generative* AI — distinguishing GenAI policy
+# Terms that explicitly signal *generative* AI 鈥?distinguishing GenAI policy
 # pages from generic AI/academic-integrity content. A page must contain at
 # least one of these (in any of the page's languages) to be archived.
 CORE_GENAI_TERMS = [
@@ -341,16 +341,16 @@ CORE_GENAI_TERMS = [
     "chatgpt", "generative ai", "genai", "large language model", "llm",
     "gpt-3", "gpt-4", "gpt-5", "claude", "gemini", "copilot",
     # Chinese
-    "生成式人工智能", "生成式ai", "大语言模型", "通用人工智能",
+    "鐢熸垚寮忎汉宸ユ櫤鑳?, "鐢熸垚寮廰i", "澶ц瑷€妯″瀷", "閫氱敤浜哄伐鏅鸿兘",
     # German
-    "generative ki", "generative künstliche", "sprachmodell",
+    "generative ki", "generative k眉nstliche", "sprachmodell",
     # Spanish / Portuguese
     "ia generativa", "inteligencia artificial generativa",
-    "inteligência artificial generativa",
+    "intelig锚ncia artificial generativa",
     # French
-    "ia générative", "intelligence artificielle générative",
+    "ia g茅n茅rative", "intelligence artificielle g茅n茅rative",
     # Japanese / Korean
-    "生成ai", "생성형 ai", "생성 ai",
+    "鐢熸垚ai", "靸濎劚順?ai", "靸濎劚 ai",
     # Italian / Dutch
     "ia generativa", "generatieve ai",
 ]
@@ -444,7 +444,7 @@ def scrape_institution(institution: dict[str, Any], queries_cfg: dict[str, Any],
             queries.extend(cfg["queries"])
     queries = list(dict.fromkeys(queries))
 
-    # 0. Brave-seeded URLs first (highest signal — they're already search-engine
+    # 0. Brave-seeded URLs first (highest signal 鈥?they're already search-engine
     # filtered for relevance to GenAI policy queries).
     brave_seeds = load_brave_seed_urls().get(iid, [])
     if brave_seeds:
@@ -473,7 +473,7 @@ def scrape_institution(institution: dict[str, Any], queries_cfg: dict[str, Any],
             except Exception as exc:
                 logger.warning("%s duckduckgo discovery failed: %s", iid, exc)
 
-        # 3b. Homepage link-crawl — works without API keys and respects robots.txt.
+        # 3b. Homepage link-crawl 鈥?works without API keys and respects robots.txt.
         # Essential for non-English sites where /ai-policy patterns don't apply.
         try:
             crawl_cands = discover_candidate_urls_homepage_crawl(
@@ -538,7 +538,7 @@ def scrape_institution(institution: dict[str, Any], queries_cfg: dict[str, Any],
             text = text_from_html(body)
             # HTML pages must pass content-density check (which now requires
             # a core *generative* AI term). url_keyword_pass alone is too
-            # permissive — it would accept any /policy URL even if the page
+            # permissive 鈥?it would accept any /policy URL even if the page
             # is about a different topic (e.g., animal-research policy).
             pass_filter = keyword_density_pass(text, primary_lang, queries_cfg) or \
                           keyword_density_pass(text, "en", queries_cfg)
@@ -654,3 +654,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+

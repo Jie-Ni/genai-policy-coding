@@ -1,4 +1,4 @@
-"""Statistical analysis for IJETHE GenAI policy paper.
+﻿"""Statistical analysis for GenAI policy maturation paper.
 
 Inputs
 ------
@@ -8,16 +8,16 @@ data/institution_list.csv                  # region + tier metadata
 Pipeline
 --------
 1. Load coded chunks; collapse to institution-level theme prevalence
-   (whether ≥1 chunk for that institution is coded 1 for theme T_k).
+   (whether 鈮? chunk for that institution is coded 1 for theme T_k).
 2. Compute per-region theme prevalence and per-region mean sentiment.
 3. **TOST equivalence test** at epsilon=0.10 for pairwise region differences
    in theme prevalence (proportions): tests whether the two-region
    difference is *within* [-eps, +eps]. We use the Newcombe (1998)
    confidence interval for difference of two proportions; equivalence
-   declared if 90% CI ⊂ [-eps, +eps] (Schuirmann 1987 two one-sided tests
+   declared if 90% CI 鈯?[-eps, +eps] (Schuirmann 1987 two one-sided tests
    at alpha=0.05 each).
-4. BH-FDR adjustment at q=0.10 over the 6 region-pair × 8 theme tests
-   (= 48 hypotheses) plus 6 × 4 sentiment tests (= 24).
+4. BH-FDR adjustment at q=0.10 over the 6 region-pair 脳 8 theme tests
+   (= 48 hypotheses) plus 6 脳 4 sentiment tests (= 24).
 5. **Bootstrap** (B=2000, seed=11) CIs on region-level prevalence and
    sentiment differences; record both percentile and BCa intervals.
 6. **Mixed-effects logistic regression** for each theme, with random
@@ -218,7 +218,7 @@ def tost_proportions(x1: int, n1: int, x2: int, n2: int,
                       eps: float = EPS_THEME, alpha: float = ALPHA
                       ) -> dict[str, Any]:
     """Two One-Sided Tests for p1 - p2 against [-eps, +eps]. Equivalence
-    declared iff the (1 - 2*alpha) CI for p1 - p2 ⊂ [-eps, +eps]."""
+    declared iff the (1 - 2*alpha) CI for p1 - p2 鈯?[-eps, +eps]."""
     lo, hi = newcombe_diff_ci(x1, n1, x2, n2, alpha)
     equiv = (lo > -eps) and (hi < eps)
     return {
@@ -226,7 +226,7 @@ def tost_proportions(x1: int, n1: int, x2: int, n2: int,
         "p2": x2 / n2 if n2 else float("nan"),
         "diff": (x1 / n1 - x2 / n2) if n1 and n2 else float("nan"),
         "ci_lo": lo, "ci_hi": hi, "eps": eps, "equivalent": equiv,
-        # one-sided p-values via Wald on score-test components — conservative
+        # one-sided p-values via Wald on score-test components 鈥?conservative
         "p_lower": _z_to_p(((x1 / n1 - x2 / n2) - (-eps)) / _se_diff(x1, n1, x2, n2)) if n1 and n2 else float("nan"),
         "p_upper": _z_to_p(-((x1 / n1 - x2 / n2) - eps) / _se_diff(x1, n1, x2, n2)) if n1 and n2 else float("nan"),
     }
@@ -330,7 +330,7 @@ def bootstrap_diff_means(x1: list[float], x2: list[float],
 
 
 # ---------------------------------------------------------------------------
-# Mixed-effects logistic — Laplace approximation (no statsmodels dep)
+# Mixed-effects logistic 鈥?Laplace approximation (no statsmodels dep)
 # ---------------------------------------------------------------------------
 
 
@@ -474,7 +474,7 @@ def main() -> int:
         print("[stats] no usable chunks; aborting", file=sys.stderr)
         return 2
 
-    # -- 1. Region × theme prevalence (institution-level) -------------------
+    # -- 1. Region 脳 theme prevalence (institution-level) -------------------
     region_inst: dict[str, set[str]] = {r: set() for r in REGIONS}
     for c in chunks:
         region_inst[c.region].add(c.institution_id)
@@ -499,7 +499,7 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    # -- 2. Region × sentiment means (institution-level) -------------------
+    # -- 2. Region 脳 sentiment means (institution-level) -------------------
     sent_table: dict[str, dict[str, list[float]]] = {}
     for u in SENTIMENT_USE_CASES:
         sent_inst = institution_level_sentiment(chunks, u)
@@ -685,7 +685,7 @@ def _csv_cell(c: Any) -> str:
 def _build_summary_md(*, n_chunks: int, n_inst: int, bh: dict[str, Any],
                        prev_table: dict, sent_table: dict) -> str:
     lines = [
-        "# IJETHE GenAI Policy — Analysis Summary",
+        "# GenAI Policy Maturation 鈥?Analysis Summary",
         "",
         f"- Total OK-coded chunks: **{n_chunks}**",
         f"- Total institutions analyzed: **{n_inst}**",
@@ -702,7 +702,7 @@ def _build_summary_md(*, n_chunks: int, n_inst: int, bh: dict[str, Any],
         cells = []
         for r in REGIONS:
             x, n = prev_table[t][r]["x"], prev_table[t][r]["n"]
-            cells.append(f"{x}/{n} ({x/n:.0%})" if n else "—")
+            cells.append(f"{x}/{n} ({x/n:.0%})" if n else "鈥?)
         lines.append("| " + t + " | " + " | ".join(cells) + " |")
     lines.append("")
     lines.append("## Sentiment mean by region (scale -2..+2)")
@@ -713,10 +713,11 @@ def _build_summary_md(*, n_chunks: int, n_inst: int, bh: dict[str, Any],
         cells = []
         for r in REGIONS:
             v = sent_table[u][r]
-            cells.append(f"{np.mean(v):+.2f} (n={len(v)})" if v else "—")
+            cells.append(f"{np.mean(v):+.2f} (n={len(v)})" if v else "鈥?)
         lines.append("| " + u + " | " + " | ".join(cells) + " |")
     return "\n".join(lines) + "\n"
 
 
 if __name__ == "__main__":
     sys.exit(main())
+

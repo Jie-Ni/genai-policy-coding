@@ -4,7 +4,7 @@ The data, statistical outputs, codebook, and analysis CSVs in this
 repository — specifically the contents of the directories `chunks_metadata/`,
 `codings/`, `stats/`, plus the top-level files `institution_list.csv`,
 `search_queries.json`, `codebook.md`, `preregistration.md`, and everything
-under `manuscript/tables/` and `manuscript/figures/` — are made available
+under `data/` and the codebook file — are made available
 under the Creative Commons Attribution 4.0 International licence (CC BY 4.0).
 
 You are free to:
@@ -27,7 +27,7 @@ Citation when re-using these data:
   manuscript's journal acceptance.
 
 Excluded from this licence:
-  - Source code under `scripts/` and the build scripts under `manuscript/`
+  - Source code under `scripts/`
     are released under the MIT licence; see the `LICENSE` file.
   - Verbatim text from individual university policy documents is NOT
     redistributed by this repository and is NOT covered by this licence;

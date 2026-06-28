@@ -1,9 +1,9 @@
-"""Chunk extracted policy text into ~500-token windows with metadata.
+﻿"""Chunk extracted policy text into ~500-token windows with metadata.
 
 Inputs
 ------
 data_processed/policy_documents.jsonl
-    Output of 03_extract_text.py — one row per extracted document with
+    Output of 03_extract_text.py 鈥?one row per extracted document with
     fields: institution_id, source_url, text, language_detected,
     archive_sha (or similar archive identifier), and optional section
     structure markers.
@@ -36,10 +36,10 @@ Chunking strategy
    most recent heading as `section_header`.
 3. Filter out chunks that lack any GenAI-specific term (CORE_GENAI_TERMS).
 4. Shard the resulting chunks deterministically by sha256(chunk_id) % N
-   so a 4-region × 4-tier corpus is balanced across shards (not all of one
+   so a 4-region 脳 4-tier corpus is balanced across shards (not all of one
    region landing in shard 0).
 
-Token approximation: words × 1.3 (English) / 0.7 (Chinese) is the rough
+Token approximation: words 脳 1.3 (English) / 0.7 (Chinese) is the rough
 rule we use; vLLM's tokenizer is the actual gate but we don't need to
 import it here. The 500-token target is the sweet spot for the coder
 prompt budget (system + 16 few-shot examples + chunk + JSON output stays
@@ -68,12 +68,12 @@ SHARDS_DIR = ROOT / "data_processed" / "shards"
 CORE_GENAI_TERMS = [
     "chatgpt", "generative ai", "genai", "large language model", "llm",
     "gpt-3", "gpt-4", "gpt-5", "claude", "gemini", "copilot",
-    "生成式人工智能", "生成式ai", "大语言模型", "通用人工智能",
-    "generative ki", "generative künstliche", "sprachmodell",
+    "鐢熸垚寮忎汉宸ユ櫤鑳?, "鐢熸垚寮廰i", "澶ц瑷€妯″瀷", "閫氱敤浜哄伐鏅鸿兘",
+    "generative ki", "generative k眉nstliche", "sprachmodell",
     "ia generativa", "inteligencia artificial generativa",
-    "inteligência artificial generativa",
-    "ia générative", "intelligence artificielle générative",
-    "生成ai", "생성형 ai", "생성 ai", "generatieve ai",
+    "intelig锚ncia artificial generativa",
+    "ia g茅n茅rative", "intelligence artificielle g茅n茅rative",
+    "鐢熸垚ai", "靸濎劚順?ai", "靸濎劚 ai", "generatieve ai",
 ]
 
 
@@ -81,7 +81,7 @@ def approx_tokens(text: str, lang: str) -> int:
     """Coarse token count; English ~ 1.3 tokens/word, CJK ~ 1 char/token."""
     if lang.startswith("zh") or lang in ("ja", "ko"):
         # CJK: roughly 1 token per CJK character
-        cjk = sum(1 for c in text if "　" <= c <= "鿿")
+        cjk = sum(1 for c in text if "銆€" <= c <= "榭?)
         latin_words = len(re.findall(r"[A-Za-z]+", text))
         return cjk + latin_words
     return int(len(text.split()) * 1.3)
@@ -150,8 +150,8 @@ def pack_paragraphs(blocks: list[tuple[str, str]], lang: str,
 
 def _split_long_paragraph(p: str, lang: str, max_tokens: int) -> list[str]:
     """Split a paragraph that exceeds max_tokens on sentence boundaries."""
-    sentences = re.split(r"(?<=[.!?。！？])\s+", p) if lang != "ja" \
-        else re.split(r"(?<=[。！？])", p)
+    sentences = re.split(r"(?<=[.!?銆傦紒锛焆)\s+", p) if lang != "ja" \
+        else re.split(r"(?<=[銆傦紒锛焆)", p)
     out: list[str] = []
     buf: list[str] = []
     buf_tok = 0
@@ -304,3 +304,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+

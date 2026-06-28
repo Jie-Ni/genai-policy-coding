@@ -1,4 +1,4 @@
-"""Build and validate the 240-institution sampling frame.
+﻿"""Build and validate the 240-institution sampling frame.
 
 Stage 1 (this script): load the hand-curated `data/institution_list.csv`,
 validate schema, check regional balance, check URL reachability, write a
@@ -55,7 +55,7 @@ def load_csv(path: Path) -> list[dict[str, Any]]:
     if not path.exists():
         raise SystemExit(f"missing {path}")
     rows = list(csv.DictReader(path.open(encoding="utf-8-sig")))
-    return [{k.lstrip("﻿"): v for k, v in r.items()} for r in rows]
+    return [{k.lstrip("锘?): v for k, v in r.items()} for r in rows]
 
 
 def validate_schema(rows: list[dict[str, Any]]) -> list[str]:
@@ -140,7 +140,7 @@ def check_urls(rows: list[dict[str, Any]], max_per_call: int = 5) -> dict[str, A
             t0 = time.time()
             try:
                 req = urllib.request.Request(url, method="HEAD", headers={
-                    "User-Agent": "IJETHE-policy-research/1.0 (contact: ni.jie@uibk.ac.at)"
+                    "User-Agent": "genai-policy-maturation/1.0 (contact: ni.jie@uibk.ac.at)"
                 })
                 with urllib.request.urlopen(req, timeout=10) as resp:
                     entry["status"] = resp.status
@@ -177,7 +177,7 @@ def extend_with_ror(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     print()
     print("Action plan for week 2:")
     print("  (1) Download QS World 2026 + ARWU 2025 CSVs to data/rankings/")
-    print("  (2) For each region × tier cell, list candidate institutions")
+    print("  (2) For each region 脳 tier cell, list candidate institutions")
     print("       sorted by rank")
     print("  (3) For LA, supplement with QS Latin America 2026 + Times HE LA")
     print("  (4) Final review by senior author before merging")
@@ -237,3 +237,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
